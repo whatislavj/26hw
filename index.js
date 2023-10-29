@@ -1,10 +1,26 @@
 //  task1
-fetch('https://jsonplaceholder.typicode.com/posts?_limit=15').
-then((response) => {
-    return response.json()
-}).then((data) => {
-    console.log(data)
-})
+const list = document.getElementById('list')
+
+const getPost = (limit) => {
+    fetch(`https://jsonplaceholder.typicode.com/posts?_limit=${limit}`)
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            data.forEach((item) => {
+               const listTitle = document.createElement('li')
+               const listBody = document.createElement('li')
+               listTitle.innerText = item.title
+               list.appendChild(listTitle)
+               listBody.innerText = item.body
+               list.appendChild(listBody)
+               list.appendChild(document.createElement('br'))
+            })
+        })
+}
+
+getPost(15)
+
 
 // task2 POST
 fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -17,12 +33,13 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
     headers: {
         'Content-type': 'application/json; charset=UTF-8',
     }
-}).
-then((response) => {
-    return response.json()
-}).then((data) => {
-    console.log(data)
 })
+    .then((response) => {
+        return response.json()
+    })
+    .then((data) => {
+        console.log(data)
+    })
 
 // task2 PUT
 fetch('https://jsonplaceholder.typicode.com/posts?_id=1', {
@@ -35,19 +52,21 @@ fetch('https://jsonplaceholder.typicode.com/posts?_id=1', {
     headers: {
         'Content-type': 'application/json; charset=UTF-8',
     }
-}).
-then((response) => {
-    return response.json()
-}).then((data) => {
-    console.log(data)
 })
+    .then((response) => {
+        return response.json()
+    })
+    .then((data) => {
+        console.log(data)
+    })
 
 // task2 DELETE
 fetch('https://jsonplaceholder.typicode.com/posts', {
     method: 'DELETE',
-}).
-then((response) => {
-    return response.json()
-}).then((data) => {
-    console.log(data)
 })
+    .then((response) => {
+        return response.json()
+    })
+    .then((data) => {
+        console.log(data)
+    })
